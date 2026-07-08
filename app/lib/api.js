@@ -1,32 +1,44 @@
-
-
 export async function getProducts() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products`
+    `${process.env.NEXT_PUBLIC_API_URL}/products`,
+    {
+      cache: "no-store",
+    }
   );
 
-  const products = await res.json();
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
 
-  return products;
+  return await res.json();
 }
 
 export async function getProduct(id) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+    {
+      cache: "no-store",
+    }
   );
 
-  const product = await res.json();
+  if (!res.ok) {
+    throw new Error("Failed to fetch product");
+  }
 
-  return product;
+  return await res.json();
 }
 
 export async function getCategories() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/categories`
+    `${process.env.NEXT_PUBLIC_API_URL}/products/categories`,
+    {
+      cache: "no-store",
+    }
   );
 
-  const categories = await res.json();
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
 
-  return categories;
+  return await res.json();
 }
