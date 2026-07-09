@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 export default function CategoryFilter({
     category,
@@ -10,15 +10,13 @@ export default function CategoryFilter({
             value={category}
             onChange={(e) => setCategory(e.target.value)}
         >
-            <option value="all">
-                All Categories
-            </option>
+            <option value="all">All Categories</option>
 
             {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                    {cat}
+                <option key={cat.slug} value={cat.slug}>
+                    {cat.name}
                 </option>
             ))}
         </select>
-    )
+    );
 }
