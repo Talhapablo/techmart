@@ -1,18 +1,18 @@
-import { getProducts, getCategories } from "../lib/api"
-import ProductList from "../components/ProductList";
+import { getProducts, getCategories } from "../lib/api";
 
 export default async function ProductsPage() {
     const products = await getProducts();
     const categories = await getCategories();
 
     return (
-        <div className="container">
-            <h1>Products</h1>
+        <div>
+            <h1>Products Test</h1>
 
-            <ProductList
-                products={products}
-                categories={categories}
-            />
+            <p>Products: {products.length}</p>
+
+            <p>Categories: {categories.length}</p>
+
+            <pre>{JSON.stringify(products[0], null, 2)}</pre>
         </div>
     );
 }
