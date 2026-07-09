@@ -12,13 +12,13 @@ export default function ProductCard({ product }) {
     return (
         <div className="card">
             <Image
-                src={product.image}
+                src={product.thumbnail}
                 alt={product.title}
                 width={200}
                 height={200}
                 style={{
                     objectFit: "contain",
-                    width: "100",
+                    width: "100%",
                     height: "220px",
                 }}
             />
