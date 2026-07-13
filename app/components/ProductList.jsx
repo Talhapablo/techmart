@@ -17,11 +17,9 @@ export default function ProductList({ products, categories }) {
             .toLowerCase()
             .includes(search.toLowerCase());
 
-        const matchesCategory =
-            category === "all" ||
-            product.category === category;
 
-        return matchesSearch && matchesCategory;
+
+        return matchesSearch;
     });
 
     // Copy array before sorting
@@ -50,11 +48,6 @@ export default function ProductList({ products, categories }) {
             />
 
             <div className="filters">
-                <CategoryFilter
-                    category={category}
-                    setCategory={setCategory}
-                    categories={categories}
-                />
 
                 <SortFilter
                     sort={sort}

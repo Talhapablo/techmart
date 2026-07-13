@@ -9,10 +9,30 @@ import Image from "next/image";
 export default function ProductCard({ product }) {
     const { addToCart } = useContext(CartContext);
 
+    async function handleDelete() {
+        const confirmDelete = confirm(
+            "Are you sure you want to delete this product?"
+        );
+
+        if (!confirmDelete) return;
+
+        const res = await fetch(`/api/products/${product.id}`, {
+            method: "DELETE",
+        });
+
+        const data = await res.json();
+
+        alert(data.message);
+
+        if (res.ok) {
+            window.location.reload();
+        }
+    }
+
     return (
         <div className="card">
             <Image
-                src={product.thumbnail}
+                src={product.image}
                 alt={product.title}
                 width={200}
                 height={200}
@@ -40,8 +60,16 @@ export default function ProductCard({ product }) {
                     </button>
                 </Link>
 
+                <Link href={`/edit-product/${product.id}`}>
+                    <button>Edit</button>
+                </Link>
+
                 <button onClick={() => addToCart(product)}>
                     Add To Cart
+                </button>
+
+                <button onClick={handleDelete}>
+                    Delete
                 </button>
             </div>
         </div>

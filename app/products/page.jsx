@@ -1,18 +1,17 @@
-import { getProducts, getCategories } from "../lib/api";
 import ProductList from "../components/ProductList";
 
 export default async function ProductsPage() {
-    const products = await getProducts();
-    const categories = await getCategories();
+    const res = await fetch("http://localhost:3000/api/products", {
+        cache: "no-store",
+    });
+
+    const products = await res.json();
 
     return (
         <div className="container">
             <h1>Products</h1>
 
-            <ProductList
-                products={products}
-                categories={categories}
-            />
+            <ProductList products={products} />
         </div>
     );
 }
